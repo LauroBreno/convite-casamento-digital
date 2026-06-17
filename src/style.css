@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-casamento-fundo: #F8F6F4;
+  --color-casamento-texto: #5A8BBF;
+  --color-casamento-dourado: #C5A880;
+  
+  --font-script: "Parisienne", cursive;
+  --font-script-alt: "Alex Brush", cursive; 
+  --font-sans: "Montserrat", sans-serif;
+}
+body {
+  background-color: var(--color-casamento-fundo);
+  color: var(--color-casamento-texto);
+  font-family: var(--font-sans);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ajuste sutil para o rodapé e nomes não cortarem */
+.font-script, .font-script-alt {
+  line-height: 1.3;
+  padding-bottom: 0.1em;
+}
