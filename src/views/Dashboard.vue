@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-[var(--color-casamento-fundo)] text-[var(--color-casamento-texto)] font-sans selection:bg-[var(--color-casamento-dourado)] selection:text-white pt-24 md:pt-32 pb-32 w-full relative">
+  <div class="min-h-screen bg-[var(--color-casamento-fundo)] text-[var(--color-casamento-texto)] font-sans selection:bg-[var(--color-casamento-dourado)] selection:text-white pt-24 md:pt-32 pb-48 md:pb-32 w-full relative overflow-x-hidden">
     
     <!-- HEADER -->
     <header class="fixed top-0 left-0 w-full bg-[var(--color-casamento-fundo)] z-40 border-b border-[var(--color-casamento-dourado)] border-opacity-30 shadow-[0_4px_30px_rgba(197,160,128,0.15)] transition-all duration-300">
@@ -18,21 +18,21 @@
         </div>
 
         <div class="hidden md:flex flex-row items-center gap-4 relative z-10">
-          <button @click="adicionarPresente" class="px-6 py-2.5 bg-[var(--color-casamento-dourado)] border border-transparent text-white text-[9px] tracking-[0.2em] uppercase rounded-sm hover:opacity-90 transition-all duration-300 shadow-sm">
+          <button @click="adicionarPresente" class="px-6 py-2.5 bg-[var(--color-casamento-dourado)] border border-transparent text-white text-[9px] tracking-[0.2em] uppercase rounded-sm hover:opacity-90 transition-all duration-300 shadow-sm cursor-pointer">
             + Adicionar Presente
           </button>
-          <button @click="abrirGerenciadorCategorias" class="px-6 py-2.5 border border-[#5A8BBF] border-opacity-30 text-[#5A8BBF] text-[9px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#5A8BBF] hover:text-white transition-all duration-300">
+          <button @click="abrirGerenciadorCategorias" class="px-6 py-2.5 border border-[#5A8BBF] border-opacity-30 text-[#5A8BBF] text-[9px] tracking-[0.2em] uppercase rounded-sm hover:bg-[#5A8BBF] hover:text-white transition-all duration-300 cursor-pointer">
             Gerenciar Categorias
           </button>
-          <button @click="voltarParaConvite" class="px-6 py-2.5 border border-[var(--color-casamento-texto)] border-opacity-30 text-[var(--color-casamento-texto)] text-[9px] tracking-[0.2em] uppercase rounded-sm hover:bg-[var(--color-casamento-texto)] hover:text-[var(--color-casamento-fundo)] transition-all duration-300">
+          <button @click="voltarParaConvite" class="px-6 py-2.5 border border-[var(--color-casamento-texto)] border-opacity-30 text-[var(--color-casamento-texto)] text-[9px] tracking-[0.2em] uppercase rounded-sm hover:bg-[var(--color-casamento-texto)] hover:text-[var(--color-casamento-fundo)] transition-all duration-300 cursor-pointer">
             Voltar ao Convite
           </button>
-          <button @click="sair" class="px-6 py-2.5 bg-transparent border border-red-400 border-opacity-30 text-red-400 text-[9px] tracking-[0.2em] uppercase rounded-sm hover:bg-red-400 hover:text-white transition-all duration-300">
+          <button @click="sair" class="px-6 py-2.5 bg-transparent border border-red-400 border-opacity-30 text-red-400 text-[9px] tracking-[0.2em] uppercase rounded-sm hover:bg-red-400 hover:text-white transition-all duration-300 cursor-pointer">
             Sair
           </button>
         </div>
 
-        <button @click="menuAberto = true" class="md:hidden relative z-10 text-[var(--color-casamento-texto)] hover:text-[var(--color-casamento-dourado)] transition-colors p-2 focus:outline-none flex-shrink-0">
+        <button @click="menuAberto = true" class="md:hidden relative z-10 text-[var(--color-casamento-texto)] hover:text-[var(--color-casamento-dourado)] transition-colors p-2 focus:outline-none flex-shrink-0 cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -45,7 +45,7 @@
     <aside :class="menuAberto ? 'translate-x-0' : 'translate-x-full'" class="fixed top-0 right-0 h-full w-[75%] max-w-sm bg-[var(--color-casamento-fundo)] z-50 shadow-2xl transition-transform duration-300 ease-in-out md:hidden flex flex-col">
       <div class="flex justify-between items-center p-6 border-b border-[var(--color-casamento-dourado)] border-opacity-20">
         <span class="text-[10px] tracking-[0.2em] uppercase text-[#5A8BBF] font-medium">Menu</span>
-        <button @click="menuAberto = false" class="text-[var(--color-casamento-texto)] opacity-60 hover:opacity-100 p-1">
+        <button @click="menuAberto = false" class="text-[var(--color-casamento-texto)] opacity-60 hover:opacity-100 p-1 cursor-pointer">
            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -53,31 +53,37 @@
       </div>
       
       <div class="flex flex-col gap-4 p-6 mt-4">
-        <button @click="adicionarPresente" class="w-full py-4 bg-[var(--color-casamento-dourado)] text-white text-[10px] tracking-[0.2em] uppercase rounded-sm shadow-sm transition-opacity active:opacity-80">
+        <button @click="adicionarPresente" class="w-full py-4 bg-[var(--color-casamento-dourado)] text-white text-[10px] tracking-[0.2em] uppercase rounded-sm shadow-sm transition-opacity active:opacity-80 cursor-pointer">
           + Adicionar Presente
         </button>
-        <button @click="abrirGerenciadorCategorias" class="w-full py-4 border border-[#5A8BBF] border-opacity-30 text-[#5A8BBF] text-[10px] tracking-[0.2em] uppercase rounded-sm shadow-sm transition-colors active:bg-[#5A8BBF] active:text-white text-center">
+        <button @click="abrirGerenciadorCategorias" class="w-full py-4 border border-[#5A8BBF] border-opacity-30 text-[#5A8BBF] text-[10px] tracking-[0.2em] uppercase rounded-sm shadow-sm transition-colors active:bg-[#5A8BBF] active:text-white text-center cursor-pointer">
           Gerenciar Categorias
         </button>
-        <button @click="voltarParaConvite" class="w-full py-4 border border-[var(--color-casamento-texto)] border-opacity-30 text-[var(--color-casamento-texto)] opacity-80 hover:opacity-100 text-[10px] tracking-[0.2em] uppercase rounded-sm transition-colors active:bg-[var(--color-casamento-texto)] active:text-white text-center">
+        <button @click="voltarParaConvite" class="w-full py-4 border border-[var(--color-casamento-texto)] border-opacity-30 text-[var(--color-casamento-texto)] opacity-80 hover:opacity-100 text-[10px] tracking-[0.2em] uppercase rounded-sm transition-colors active:bg-[var(--color-casamento-texto)] active:text-white text-center cursor-pointer">
           Voltar ao Convite
         </button>
-        <button @click="sair" class="w-full py-4 mt-8 bg-transparent text-red-400 opacity-80 hover:opacity-100 text-[10px] tracking-[0.2em] uppercase font-medium transition-opacity text-center">
+        <button @click="sair" class="w-full py-4 mt-8 bg-transparent text-red-400 opacity-80 hover:opacity-100 text-[10px] tracking-[0.2em] uppercase font-medium transition-opacity text-center cursor-pointer">
           Sair do Painel
         </button>
       </div>
     </aside>
 
-    <main class="max-w-5xl mx-auto px-4 md:px-12 mt-2">
+    <main class="max-w-5xl mx-auto px-4 md:px-12 mt-2 w-full">
       
       <div class="flex flex-col md:flex-row justify-between items-center mb-6 border-b border-[var(--color-casamento-dourado)] border-opacity-20 pb-6 gap-6 md:gap-0">
         
         <div class="flex items-center justify-center bg-white border border-[var(--color-casamento-texto)] border-opacity-10 rounded-full p-1 shadow-sm w-full md:w-auto max-w-[300px] md:max-w-none">
-          <button @click="abaAtual = 'mensagens'" :class="abaAtual === 'mensagens' ? 'bg-[var(--color-casamento-fundo)] text-[var(--color-casamento-dourado)] shadow-sm border border-[var(--color-casamento-texto)] border-opacity-5' : 'text-[var(--color-casamento-texto)] opacity-60 hover:opacity-100'" class="flex-1 px-4 sm:px-6 py-2.5 rounded-full text-[9px] tracking-[0.15em] uppercase font-medium transition-all duration-300 outline-none text-center">
+          <button @click="abaAtual = 'mensagens'" :class="abaAtual === 'mensagens' ? 'bg-[var(--color-casamento-fundo)] text-[var(--color-casamento-dourado)] shadow-sm border border-[var(--color-casamento-texto)] border-opacity-5' : 'text-[var(--color-casamento-texto)] opacity-60 hover:opacity-100'" class="flex-1 px-4 sm:px-6 py-2.5 rounded-full text-[9px] tracking-[0.15em] uppercase font-medium transition-all duration-300 outline-none text-center cursor-pointer">
             Mensagens
           </button>
-          <button @click="abaAtual = 'presentes'" :class="abaAtual === 'presentes' ? 'bg-[var(--color-casamento-fundo)] text-[var(--color-casamento-dourado)] shadow-sm border border-[var(--color-casamento-texto)] border-opacity-5' : 'text-[var(--color-casamento-texto)] opacity-60 hover:opacity-100'" class="flex-1 px-4 sm:px-6 py-2.5 rounded-full text-[9px] tracking-[0.15em] uppercase font-medium transition-all duration-300 outline-none text-center whitespace-nowrap">
-            Presentes
+          
+          <button @click="abaAtual = 'presentes'" :class="abaAtual === 'presentes' ? 'bg-[var(--color-casamento-fundo)] text-[var(--color-casamento-dourado)] shadow-sm border border-[var(--color-casamento-texto)] border-opacity-5' : 'text-[var(--color-casamento-texto)] opacity-60 hover:opacity-100'" class="flex-1 px-4 sm:px-6 py-2.5 rounded-full text-[9px] tracking-[0.15em] uppercase font-medium transition-all duration-300 outline-none text-center flex items-center justify-center cursor-pointer">
+            <span class="relative inline-flex items-center pr-1.5">
+              Presentes
+              <span v-if="presentesPendentes.length > 0" class="absolute -top-1.5 -right-3.5 flex items-center justify-center bg-[#B87C70] text-white text-[8px] font-bold h-[16px] w-[16px] rounded-full shadow-sm pt-[1px]" style="line-height: 1;">
+                {{ presentesPendentes.length }}
+              </span>
+            </span>
           </button>
         </div>
 
@@ -100,9 +106,9 @@
         </div>
       </div>
 
-      <div class="flex justify-end mb-6 w-full animate-fade-in">
+      <div class="flex justify-end mb-6 w-full animate-fade-in pr-0 md:pr-5">
         
-        <div v-if="abaAtual === 'mensagens'" class="relative inline-block w-full md:w-56">
+        <div v-if="abaAtual === 'mensagens'" class="relative inline-block w-full md:w-[260px]">
           <select v-model="filtroMensagens" class="w-full appearance-none bg-white border border-[var(--color-casamento-dourado)] border-opacity-20 text-[9px] tracking-[0.15em] text-[var(--color-casamento-texto)] opacity-80 uppercase pl-5 pr-10 py-3 rounded-full outline-none focus:border-[var(--color-casamento-dourado)] focus:ring-1 focus:ring-[var(--color-casamento-dourado)] cursor-pointer transition-all shadow-sm">
             <option value="recentes">Mais Recentes</option>
             <option value="antigos">Mais Antigos</option>
@@ -114,9 +120,10 @@
           </div>
         </div>
 
-        <div v-if="abaAtual === 'presentes'" class="relative inline-block w-full md:w-56">
+        <div v-if="abaAtual === 'presentes'" class="relative inline-block w-full md:w-[260px]">
           <select v-model="filtroPresentes" class="w-full appearance-none bg-white border border-[var(--color-casamento-dourado)] border-opacity-20 text-[9px] tracking-[0.15em] text-[var(--color-casamento-texto)] opacity-80 uppercase pl-5 pr-10 py-3 rounded-full outline-none focus:border-[var(--color-casamento-dourado)] focus:ring-1 focus:ring-[var(--color-casamento-dourado)] cursor-pointer transition-all shadow-sm">
             <option value="todos">Todos os Presentes</option>
+            <option value="reservados">Aguardando Confirmação</option>
             <option value="ativos">Apenas Ativos</option>
             <option value="inativos">Apenas Inativos</option>
             <option value="destaques">Destaques</option>
@@ -136,39 +143,59 @@
       </div>
 
       <div v-if="!carregando && abaAtual === 'mensagens'">
-        <div v-if="mensagens.length === 0" class="py-20 text-center animate-fade-in">
-          <p class="text-[10px] tracking-widest uppercase opacity-40 text-[var(--color-casamento-texto)]">Nenhum presente registrado ainda.</p>
-          <p class="font-script mt-4 text-[var(--color-casamento-dourado)] text-4xl opacity-80">Aguardando as confirmações...</p>
+        <div v-if="mensagensPaginadas.length === 0" class="py-20 text-center animate-fade-in">
+          <p class="text-[10px] tracking-widest uppercase opacity-40 text-[var(--color-casamento-texto)]">Nenhum recado encontrado.</p>
         </div>
 
-        <div v-else class="flex flex-col gap-4 animate-fade-in">
-          <div v-for="msg in mensagensFiltradas" :key="msg.id" class="flex flex-col bg-white p-5 rounded-lg border border-[var(--color-casamento-texto)] border-opacity-5 hover:shadow-lg transition-all duration-300">
+        <div v-else class="flex flex-col gap-4 animate-fade-in w-full">
+          
+          <div v-for="msg in mensagensPaginadas" :key="msg.id" class="flex flex-col bg-white p-5 rounded-lg border border-[var(--color-casamento-texto)] border-opacity-5 hover:shadow-lg transition-all duration-300 relative group w-full">
             
-            <div class="md:hidden flex items-stretch justify-between w-full mb-3">
-              <div class="flex flex-col justify-between w-[45%] text-left gap-2">
-                <span class="text-xs font-semibold tracking-[0.1em] text-[#5A8BBF] uppercase truncate" :title="msg.nome">{{ msg.nome }}</span>
-                <span class="text-[8px] tracking-widest uppercase opacity-40 text-[var(--color-casamento-texto)]">{{ formatarData(msg.data) }}</span>
+            <div class="w-full flex justify-between items-start mb-5">
+              <div>
+                <span v-if="getStatusMensagem(msg.presente_id, msg.nome) === 'comprado'" class="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#8CA894]/20 to-transparent rounded-sm border-l-2 border-[#8CA894]">
+                  <svg class="w-3.5 h-3.5 text-[#8CA894]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                  <span class="text-[9px] font-semibold tracking-[0.2em] uppercase text-[#8CA894]">Recebido</span>
+                </span>
+                <span v-else-if="getStatusMensagem(msg.presente_id, msg.nome) === 'reservado'" class="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[var(--color-casamento-dourado)]/20 to-transparent rounded-sm border-l-2 border-[var(--color-casamento-dourado)]">
+                  <svg class="w-3.5 h-3.5 text-[var(--color-casamento-dourado)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span class="text-[9px] font-semibold tracking-[0.2em] uppercase text-[var(--color-casamento-dourado)]">Pendente</span>
+                </span>
+                <span v-else-if="['cancelado', 'expirado'].includes(getStatusMensagem(msg.presente_id, msg.nome))" class="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-red-400/10 to-transparent rounded-sm border-l-2 border-red-400 opacity-90">
+                  <svg class="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span class="text-[9px] font-semibold tracking-[0.2em] uppercase text-red-400">Expirado</span>
+                </span>
               </div>
-              <div class="w-[1px] bg-[var(--color-casamento-dourado)] opacity-30 mx-2"></div>
-              <div class="flex flex-col justify-between w-[45%] text-right gap-2">
-                <span class="text-[9px] uppercase tracking-widest opacity-60 text-[var(--color-casamento-texto)] truncate" :title="msg.presente_titulo">{{ msg.presente_titulo }}</span>
-                <span class="text-[10px] font-medium text-[var(--color-casamento-dourado)] tracking-widest">{{ formatarMoeda(msg.valor) }}</span>
-              </div>
+              <button @click="excluirMensagem(msg.id)" class="text-red-400 opacity-40 hover:opacity-100 hover:bg-red-50 rounded p-1.5 transition-all flex-shrink-0 cursor-pointer" title="Excluir Recado">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
             </div>
 
-            <div class="hidden md:flex flex-row justify-between items-center w-full mb-3">
-               <div class="flex items-baseline gap-3">
-                  <span class="text-sm font-semibold tracking-[0.1em] text-[#5A8BBF] uppercase truncate max-w-[250px]" :title="msg.nome">{{ msg.nome }}</span>
-                  <span class="text-[9px] tracking-widest uppercase opacity-40 text-[var(--color-casamento-texto)]">• {{ formatarData(msg.data) }}</span>
-               </div>
-               <div class="flex items-center gap-3">
-                  <span class="text-[9px] uppercase tracking-widest opacity-60 text-[var(--color-casamento-texto)] truncate max-w-[200px]" :title="msg.presente_titulo">{{ msg.presente_titulo }}</span>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full mb-3 border-b border-[var(--color-casamento-texto)] border-opacity-5 pb-3 gap-2 md:gap-0">
+              
+              <div class="flex items-baseline gap-2 md:gap-3 w-full md:w-auto overflow-hidden">
+                <span class="text-xs md:text-sm font-semibold tracking-[0.1em] text-[#5A8BBF] uppercase truncate max-w-[150px] md:max-w-[250px]" :title="msg.nome">{{ msg.nome }}</span>
+                <span class="text-[8px] md:text-[9px] tracking-widest uppercase opacity-40 text-[var(--color-casamento-texto)] flex-shrink-0">• {{ formatarData(msg.data) }}</span>
+              </div>
+              
+              <div class="flex items-center justify-between md:justify-end gap-2 md:gap-3 w-full md:w-auto overflow-hidden mt-1 md:mt-0">
+                <span class="text-[9px] uppercase tracking-widest text-[var(--color-casamento-texto)] truncate text-left md:text-right" 
+                      :class="['cancelado', 'expirado'].includes(getStatusMensagem(msg.presente_id, msg.nome)) ? 'line-through opacity-40' : 'opacity-70'" 
+                      :title="msg.presente_titulo">
+                  {{ msg.presente_titulo }}
+                </span>
+                <div class="flex items-center gap-2 md:gap-3 flex-shrink-0">
                   <span class="w-[1px] h-3 bg-[var(--color-casamento-dourado)] opacity-30"></span>
-                  <span class="text-[11px] font-medium text-[var(--color-casamento-dourado)] tracking-widest">{{ formatarMoeda(msg.valor) }}</span>
-               </div>
+                  <span class="text-[10px] md:text-[11px] font-medium text-[var(--color-casamento-dourado)] tracking-widest" 
+                        :class="['cancelado', 'expirado'].includes(getStatusMensagem(msg.presente_id, msg.nome)) ? 'line-through opacity-40' : ''">
+                    {{ formatarMoeda(msg.valor) }}
+                  </span>
+                </div>
+              </div>
+
             </div>
             
-            <div class="w-full mt-2 md:mt-1 pt-3 md:pt-2 border-t border-[var(--color-casamento-texto)] border-opacity-5">
+            <div class="w-full">
               <p v-if="msg.mensagem && msg.mensagem !== 'Sem mensagem'" class="text-sm font-light leading-relaxed opacity-80 italic text-[var(--color-casamento-texto)] text-left">
                 "{{ msg.mensagem }}"
               </p>
@@ -177,60 +204,158 @@
               </p>
             </div>
           </div>
+
+          <!-- Paginação Desktop Mensagens -->
+          <div v-if="totalPaginasMensagens > 1" class="hidden md:flex justify-between items-center w-full mt-8 border-t border-[var(--color-casamento-texto)] border-opacity-10 pt-6">
+            <button @click="paginaMensagens--" :disabled="paginaMensagens === 1" class="px-5 py-2.5 border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[9px] tracking-widest uppercase rounded-sm transition-all disabled:opacity-30 hover:bg-[var(--color-casamento-dourado)] hover:text-white cursor-pointer">Anterior</button>
+            <span class="text-[10px] tracking-widest uppercase text-[var(--color-casamento-texto)] opacity-60">Página {{ paginaMensagens }} de {{ totalPaginasMensagens }}</span>
+            <button @click="paginaMensagens++" :disabled="paginaMensagens === totalPaginasMensagens" class="px-5 py-2.5 border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[9px] tracking-widest uppercase rounded-sm transition-all disabled:opacity-30 hover:bg-[var(--color-casamento-dourado)] hover:text-white cursor-pointer">Próxima</button>
+          </div>
+          
         </div>
       </div>
 
       <div v-if="!carregando && abaAtual === 'presentes'">
-        <div v-if="presentesPainel.length === 0" class="py-20 text-center animate-fade-in">
-          <p class="text-[10px] tracking-widest uppercase opacity-40 text-[var(--color-casamento-texto)]">Nenhum presente cadastrado.</p>
-          <button @click="adicionarPresente" class="mt-6 px-6 py-2 border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[9px] tracking-[0.2em] uppercase rounded-full hover:bg-[var(--color-casamento-dourado)] hover:text-white transition-all duration-300">
-            Cadastrar o primeiro
+        <div v-if="presentesPaginados.length === 0" class="py-20 text-center animate-fade-in">
+          <p class="text-[10px] tracking-widest uppercase opacity-40 text-[var(--color-casamento-texto)]">Nenhum presente encontrado.</p>
+          <button @click="adicionarPresente" class="mt-6 px-6 py-2 border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[9px] tracking-[0.2em] uppercase rounded-full hover:bg-[var(--color-casamento-dourado)] hover:text-white transition-all duration-300 cursor-pointer">
+            Cadastrar Novo
           </button>
         </div>
 
-        <div v-else class="flex flex-col gap-4 animate-fade-in">
-          <!-- CIRÚRGICO: Adicionada classe 'group' para o hover do ícone na lista funcionar em uníssono -->
-          <div v-for="item in presentesFiltrados" :key="item.id" class="flex flex-col md:flex-row items-center justify-between bg-white p-4 md:p-5 rounded-lg border border-[var(--color-casamento-texto)] border-opacity-5 shadow-sm hover:shadow-md transition-all duration-300 gap-4 md:gap-0 group" :class="{'opacity-50 grayscale': !item.ativo}">
+        <div v-else class="flex flex-col gap-4 animate-fade-in w-full overflow-hidden px-1 py-1">
+          
+          <div v-for="item in presentesPaginados" :key="item.id" 
+               class="flex flex-col md:flex-row items-start md:items-center justify-between p-4 md:p-5 rounded-lg border shadow-sm transition-all duration-300 gap-4 md:gap-0 group w-full" 
+               :class="[
+                 !item.ativo ? 'opacity-50 grayscale border-[var(--color-casamento-texto)] border-opacity-5 bg-white' : '',
+                 item.status === 'reservado' ? 'bg-[var(--color-casamento-fundo)] border-[var(--color-casamento-dourado)] border-opacity-50 shadow-md' : '',
+                 item.status === 'comprado' ? 'bg-[#FDFBF7] border-[var(--color-casamento-dourado)] border-opacity-40 shadow-[0_4px_20px_rgba(197,160,128,0.25)] relative overflow-hidden' : '',
+                 (!item.ativo || item.status === 'reservado' || item.status === 'comprado') ? '' : 'bg-white border-[var(--color-casamento-texto)] border-opacity-5 hover:shadow-md'
+               ]">
             
-            <div class="flex items-center gap-4 w-full md:w-auto">
-              <!-- CIRÚRGICO: Atualizado para o novo padrão de UI da vitrine circular premium -->
-              <div class="w-12 h-12 bg-[var(--color-casamento-fundo)] rounded-full flex items-center justify-center flex-shrink-0 border border-[#5A8BBF] border-opacity-40 overflow-hidden shadow-sm transition-all duration-300 group-hover:border-opacity-100">
-                <img :src="(item.icone === '/gift_close_white.gif' || !item.icone) ? '/gift_close.gif' : item.icone" alt="Ícone do Presente" class="w-8 h-8 object-contain filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
+            <div v-if="item.status === 'comprado'" class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[var(--color-casamento-dourado)] to-[#D9B78A] opacity-90 rounded-l-lg"></div>
+            
+            <div class="flex items-center gap-4 md:gap-5 w-full md:flex-1" :class="item.status === 'comprado' ? 'pl-2 py-1' : ''">
+              
+              <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 border transition-all duration-300 bg-white"
+                   :class="item.status === 'comprado' ? 'border-[var(--color-casamento-dourado)] shadow-sm text-[var(--color-casamento-dourado)]' : 'border-[#5A8BBF] border-opacity-40 group-hover:border-opacity-100 text-[#5A8BBF] opacity-70 group-hover:opacity-100'">
+                 <svg v-if="!item.icone || item.icone === '/gift_close_white.gif' || item.icone === '/gift_close.gif'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" :stroke="'url(#metallicGradient-' + item.id + ')'" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 transition-all duration-300 animate-float" :class="{'opacity-100': item.status === 'comprado' || item.status === 'reservado'}">
+                  <defs>
+                    <linearGradient :id="'metallicGradient-' + item.id" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="currentColor" stop-opacity="0.8"/>
+                      <stop offset="30%" stop-color="currentColor" stop-opacity="1"/>
+                      <stop offset="50%" stop-color="white" stop-opacity="0.7"/>
+                      <stop offset="70%" stop-color="currentColor" stop-opacity="1"/>
+                      <stop offset="100%" stop-color="currentColor" stop-opacity="0.7"/>
+                    </linearGradient>
+                  </defs>
+                  <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                  <rect x="2" y="7" width="20" height="5"></rect>
+                  <line x1="12" y1="22" x2="12" y2="7"></line>
+                  <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                  <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                </svg>
+                <img v-else :src="item.icone" alt="Ícone do Presente" class="w-7 h-7 object-contain transition-all duration-300" :class="{'grayscale-0 opacity-100': item.status === 'comprado' || item.status === 'reservado', 'grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100': item.status !== 'comprado' && item.status !== 'reservado'}" />
               </div>
-              <div class="flex flex-col text-left">
-                <h3 class="text-xs md:text-sm font-semibold tracking-widest text-[var(--color-casamento-texto)] uppercase">{{ item.titulo }}</h3>
-                <span class="text-[8px] tracking-[0.2em] uppercase text-[#5A8BBF]">{{ item.categoria }}</span>
+              
+              <div class="flex flex-col text-left justify-center">
+                <h3 class="text-xs md:text-sm font-semibold tracking-widest uppercase" :class="item.status === 'comprado' ? 'text-[var(--color-casamento-dourado)]' : 'text-[var(--color-casamento-texto)]'">{{ item.titulo }}</h3>
+                <span class="text-[8px] tracking-[0.2em] uppercase text-[#5A8BBF] mb-1.5">{{ item.categoria }}</span>
+                
+                <span v-if="item.status === 'reservado'" class="text-[9px] tracking-[0.1em] text-[var(--color-casamento-dourado)] font-medium uppercase">Reservado por: {{ item.reservado_por }}</span>
+                
+                <span v-if="item.status === 'reservado' && isExpirado(item.data_reserva)" class="text-[8px] tracking-widest text-[#B87C70] font-bold mt-1 flex items-center gap-1 uppercase">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  EXPIRADO
+                </span>
+                <span v-else-if="item.status === 'reservado'" class="text-[8px] tracking-widest text-[#B87C70] opacity-80 mt-1 flex items-center gap-1 uppercase">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  {{ calcularTempoRestante(item.data_reserva) }}
+                </span>
+                
+                <span v-else-if="item.status === 'comprado'" class="inline-flex items-center gap-1.5 px-3 py-1 bg-[var(--color-casamento-dourado)] text-white text-[8px] tracking-[0.15em] font-bold uppercase rounded-full shadow-sm w-fit mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                  Presenteado por {{ item.reservado_por }}
+                </span>
+                
+                <template v-else>
+                  <span class="text-[9px] tracking-[0.1em] text-[#5A8BBF] font-medium uppercase mt-0.5">Disponível para os convidados</span>
+                  <span v-if="item.data_criacao" class="text-[8px] tracking-widest text-[var(--color-casamento-texto)] opacity-50 mt-1 flex items-center gap-1 uppercase">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    Adicionado em {{ formatarDataCurta(item.data_criacao) }}
+                  </span>
+                </template>
               </div>
             </div>
 
-            <div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-6 border-t md:border-none border-[var(--color-casamento-texto)] border-opacity-10 pt-3 md:pt-0">
-              <span class="text-sm text-[var(--color-casamento-dourado)] font-light tracking-widest">{{ formatarMoeda(item.valor) }}</span>
+            <!-- CIRÚRGICO 1: Expansão do espaço do preço com w-1/3 flex-1 para não ser espremido pelos botões. -->
+            <div class="flex flex-row flex-nowrap items-center justify-between border-t md:border-none border-[var(--color-casamento-texto)] border-opacity-10 pt-3 md:pt-0 mt-2 md:mt-0 gap-x-2 md:gap-x-10 w-full md:w-auto">
+              <span class="text-[11px] sm:text-xs md:text-sm font-light tracking-widest whitespace-nowrap text-left md:text-left w-1/3 md:w-auto flex-1 min-w-0 truncate" :title="formatarMoeda(item.valor)" :class="item.status === 'comprado' ? 'text-[var(--color-casamento-dourado)] font-medium' : 'text-[var(--color-casamento-dourado)]'">{{ formatarMoeda(item.valor) }}</span>
               
-              <div class="flex items-center gap-3">
-                <button @click="alternarDestaque(item)" class="p-2 rounded-full transition-colors" :class="item.destaque ? 'bg-[var(--color-casamento-dourado)] text-white shadow-sm' : 'bg-gray-100 text-gray-400 hover:bg-gray-200'" :title="item.destaque ? 'Remover Destaque' : 'Adicionar aos Destaques'">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                </button>
+              <div class="flex items-center justify-end w-[165px] sm:w-[200px] md:w-[260px] relative z-10 flex-shrink-0">
                 
-                <span class="w-[1px] h-4 bg-[var(--color-casamento-texto)] opacity-20"></span>
-                
-                <button @click="editarPresente(item)" class="text-[#5A8BBF] opacity-70 hover:opacity-100 transition-opacity p-1" title="Editar presente">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-                </button>
+                <template v-if="item.status === 'reservado'">
+                  <div v-if="isExpirado(item.data_reserva)" class="flex items-center gap-2 md:gap-3 w-full">
+                    <button @click="renovarReserva(item)" class="py-2 px-1 md:py-2.5 md:px-3 bg-[#5A8BBF] text-white rounded-sm hover:opacity-90 transition-opacity shadow-sm flex items-center justify-center gap-1 md:gap-1.5 flex-1 cursor-pointer" title="Renovar Prazo (24h)">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                      <span class="text-[7.5px] md:text-[8px] tracking-widest uppercase font-medium">Renovar</span>
+                    </button>
+                    <button @click="cancelarReserva(item)" class="py-2 px-1 md:py-2.5 md:px-3 bg-transparent border border-[#B87C70] text-[#B87C70] rounded-sm hover:bg-[#B87C70] hover:text-white transition-colors flex items-center justify-center gap-1 md:gap-1.5 flex-1 cursor-pointer" title="Disponibilizar para a lista">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                      <span class="text-[7.5px] md:text-[8px] tracking-widest uppercase font-medium">Liberar</span>
+                    </button>
+                  </div>
+                  <div v-else class="flex items-center gap-2 md:gap-3 w-full">
+                    <button @click="confirmarReserva(item)" class="py-2 px-1 md:py-2.5 md:px-3 bg-[#8CA894] text-white rounded-sm hover:opacity-90 transition-opacity shadow-sm flex items-center justify-center gap-1 md:gap-1.5 flex-1 cursor-pointer" title="Confirmar Recebimento">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                      <span class="text-[7.5px] md:text-[8px] tracking-widest uppercase font-medium">Confirmar</span>
+                    </button>
+                    <button @click="cancelarReserva(item)" class="py-2 px-1 md:py-2.5 md:px-3 bg-transparent border border-[#B87C70] text-[#B87C70] rounded-sm hover:bg-[#B87C70] hover:text-white transition-colors flex items-center justify-center gap-1 md:gap-1.5 flex-1 cursor-pointer" title="Cancelar Reserva">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                      <span class="text-[7.5px] md:text-[8px] tracking-widest uppercase font-medium">Liberar</span>
+                    </button>
+                  </div>
+                </template>
 
-                <button @click="alternarStatus(item)" class="text-[var(--color-casamento-texto)] opacity-50 hover:opacity-100 transition-opacity p-1" :title="item.ativo ? 'Desativar presente' : 'Reativar presente'">
-                  <svg v-if="item.ativo" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" /></svg>
-                </button>
+                <template v-else>
+                  <div class="flex items-center justify-between w-full px-0 md:px-1 gap-0">
+                    <button @click="alternarDestaque(item)" :disabled="!item.ativo" class="p-1.5 md:p-2 rounded-full transition-all cursor-pointer disabled:opacity-30 hover:disabled:bg-transparent flex-shrink-0" :class="item.destaque ? 'text-[var(--color-casamento-dourado)] bg-[#F2E6D9]' : 'text-gray-400 hover:text-[var(--color-casamento-dourado)] hover:bg-[#F2E6D9]'" title="Destaque">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 md:h-4 md:w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    </button>
+                    
+                    <span class="w-[1px] h-3 md:h-4 bg-[var(--color-casamento-texto)] opacity-20"></span>
+                    
+                    <button @click="editarPresente(item)" :disabled="!item.ativo" class="p-1.5 md:p-2 rounded-full transition-all text-[#5A8BBF] opacity-70 hover:opacity-100 hover:bg-blue-50 cursor-pointer disabled:opacity-30 hover:disabled:bg-transparent flex-shrink-0" title="Editar presente">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                    </button>
+    
+                    <button @click="alternarStatus(item)" class="p-1.5 md:p-2 rounded-full transition-all cursor-pointer flex-shrink-0" :class="item.ativo ? 'text-[var(--color-casamento-texto)] opacity-50 hover:opacity-100 hover:bg-gray-100' : 'text-red-400 hover:bg-red-50'" :title="item.ativo ? 'Desativar presente' : 'Reativar presente'">
+                      <svg v-if="item.ativo" xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                      <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" /></svg>
+                    </button>
+    
+                    <button v-if="item.status !== 'comprado'" @click="excluirPresente(item.id)" :disabled="!item.ativo" class="p-1.5 md:p-2 rounded-full transition-all text-red-400 opacity-70 hover:opacity-100 hover:bg-red-50 cursor-pointer disabled:opacity-30 hover:disabled:bg-transparent flex-shrink-0" title="Excluir Permanentemente">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                    <button v-else disabled class="p-1.5 md:p-2 rounded-full transition-all text-[var(--color-casamento-texto)] opacity-20 flex-shrink-0" title="Não é possível excluir um presente já comprado">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                  </div>
+                </template>
 
-                <button @click="excluirPresente(item.id)" class="text-red-400 opacity-70 hover:opacity-100 hover:text-red-600 transition-colors p-1" title="Excluir Permanentemente">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                </button>
               </div>
             </div>
 
           </div>
+          
+          <!-- Paginação Desktop Presentes -->
+          <div v-if="totalPaginasPresentes > 1" class="hidden md:flex justify-between items-center w-full mt-8 border-t border-[var(--color-casamento-texto)] border-opacity-10 pt-6">
+            <button @click="paginaPresentes--" :disabled="paginaPresentes === 1" class="px-5 py-2.5 border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[9px] tracking-widest uppercase rounded-sm transition-all cursor-pointer hover:bg-[var(--color-casamento-dourado)] hover:text-white">Anterior</button>
+            <span class="text-[10px] tracking-widest uppercase text-[var(--color-casamento-texto)] opacity-60">Página {{ paginaPresentes }} de {{ totalPaginasPresentes }}</span>
+            <button @click="paginaPresentes++" :disabled="paginaPresentes === totalPaginasPresentes" class="px-5 py-2.5 border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[9px] tracking-widest uppercase rounded-sm transition-all cursor-pointer hover:bg-[var(--color-casamento-dourado)] hover:text-white">Próxima</button>
+          </div>
+
         </div>
       </div>
       
@@ -257,10 +382,10 @@
             <div v-if="categoriaSendoEditada !== cat" class="flex justify-between items-center w-full">
               <span class="text-xs font-semibold tracking-widest uppercase text-[var(--color-casamento-texto)]">{{ cat }}</span>
               <div class="flex gap-3">
-                <button @click="iniciarEdicaoCategoria(cat)" class="text-[#5A8BBF] opacity-70 hover:opacity-100 transition-opacity" title="Renomear">
+                <button @click="iniciarEdicaoCategoria(cat)" class="text-[#5A8BBF] opacity-70 hover:opacity-100 transition-opacity cursor-pointer" title="Renomear">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                 </button>
-                <button @click="excluirCategoria(cat)" class="text-red-400 opacity-70 hover:opacity-100 transition-opacity" title="Excluir">
+                <button @click="excluirCategoria(cat)" class="text-red-400 opacity-70 hover:opacity-100 transition-opacity cursor-pointer" title="Excluir">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                 </button>
               </div>
@@ -271,15 +396,15 @@
               <p v-if="erroEdicaoCategoria" class="text-[8px] text-red-500 uppercase tracking-widest">{{ erroEdicaoCategoria }}</p>
               <p class="text-[8px] text-[#5A8BBF] uppercase tracking-widest opacity-80">Atenção: Isso alterará todos os presentes vinculados a esta categoria.</p>
               <div class="flex justify-end gap-2 mt-1">
-                <button @click="cancelarEdicaoCategoria" class="text-[9px] uppercase tracking-widest opacity-60 hover:opacity-100 text-[var(--color-casamento-texto)] px-2 py-1">Cancelar</button>
-                <button @click="salvarEdicaoCategoria(cat)" :disabled="salvandoCategoria" class="text-[9px] uppercase tracking-widest bg-[var(--color-casamento-dourado)] text-white px-3 py-1 rounded-sm hover:opacity-90 disabled:opacity-50">Salvar</button>
+                <button @click="cancelarEdicaoCategoria" class="text-[9px] uppercase tracking-widest opacity-60 hover:opacity-100 text-[var(--color-casamento-texto)] px-2 py-1 cursor-pointer">Cancelar</button>
+                <button @click="salvarEdicaoCategoria(cat)" :disabled="salvandoCategoria" class="text-[9px] uppercase tracking-widest bg-[var(--color-casamento-dourado)] text-white px-3 py-1 rounded-sm hover:opacity-90 disabled:opacity-50 cursor-pointer">Salvar</button>
               </div>
             </div>
 
           </li>
         </ul>
         <div class="w-full mt-6 flex justify-center">
-            <button @click="fecharGerenciadorCategorias" class="px-6 py-3 border border-[var(--color-casamento-texto)] border-opacity-30 text-[var(--color-casamento-texto)] text-[9px] tracking-[0.2em] uppercase rounded-full hover:bg-[var(--color-casamento-texto)] hover:text-white transition-all duration-300">
+            <button @click="fecharGerenciadorCategorias" class="px-6 py-3 border border-[var(--color-casamento-texto)] border-opacity-30 text-[var(--color-casamento-texto)] text-[9px] tracking-[0.2em] uppercase rounded-full hover:bg-[var(--color-casamento-texto)] hover:text-white transition-all duration-300 cursor-pointer">
               Fechar
             </button>
         </div>
@@ -325,8 +450,8 @@
               
               <div v-if="mostrandoNovaCategoria" class="flex items-center gap-2 mt-2 bg-gray-50 p-2 rounded-sm border border-gray-200 animate-fade-in shadow-sm">
                  <input v-model="novaCategoriaNome" type="text" placeholder="Nome da nova categoria..." class="flex-1 bg-transparent outline-none text-xs font-medium text-[var(--color-casamento-texto)] px-2" @keyup.enter.prevent="adicionarNovaCategoria" />
-                 <button @click.prevent="adicionarNovaCategoria" type="button" class="px-4 py-2 bg-[var(--color-casamento-dourado)] text-white text-[8px] tracking-widest uppercase rounded-sm hover:opacity-90 transition-opacity">Salvar</button>
-                 <button @click.prevent="cancelarNovaCategoria" type="button" class="px-2 py-2 text-red-400 text-[10px] font-bold hover:opacity-70 transition-opacity">&times;</button>
+                 <button @click.prevent="adicionarNovaCategoria" type="button" class="px-4 py-2 bg-[var(--color-casamento-dourado)] text-white text-[8px] tracking-widest uppercase rounded-sm hover:opacity-90 transition-opacity cursor-pointer">Salvar</button>
+                 <button @click.prevent="cancelarNovaCategoria" type="button" class="px-2 py-2 text-red-400 text-[10px] font-bold hover:opacity-70 transition-opacity cursor-pointer">&times;</button>
               </div>
             </div>
             
@@ -342,7 +467,7 @@
             </label>
             <div class="flex items-center gap-2" v-if="novoPresente.links.length < 5">
                <input v-model="novoLinkInput" type="url" placeholder="https://www.loja.com.br/produto" class="flex-1 w-[50%] bg-white border border-[var(--color-casamento-texto)] border-opacity-20 rounded-sm focus:border-[#5A8BBF] focus:border-opacity-100 outline-none p-2 sm:p-3 text-[10px] sm:text-xs font-light text-[var(--color-casamento-texto)] transition-colors shadow-sm" @keyup.enter.prevent="adicionarLink" />
-               <button @click.prevent="adicionarLink" type="button" class="px-2 sm:px-4 py-2 sm:py-3 bg-[#5A8BBF] text-white text-[8px] sm:text-[9px] tracking-[0.1em] sm:tracking-[0.2em] uppercase rounded-sm hover:opacity-90 transition-opacity shadow-sm flex-shrink-0 whitespace-nowrap">Adicionar</button>
+               <button @click.prevent="adicionarLink" type="button" class="px-2 sm:px-4 py-2 sm:py-3 bg-[#5A8BBF] text-white text-[8px] sm:text-[9px] tracking-[0.1em] sm:tracking-[0.2em] uppercase rounded-sm hover:opacity-90 transition-opacity shadow-sm flex-shrink-0 whitespace-nowrap cursor-pointer">Adicionar</button>
             </div>
             <ul v-if="novoPresente.links.length > 0" class="flex flex-col gap-2 mt-2">
                <li v-for="(link, i) in novoPresente.links" :key="i" class="flex justify-between items-center bg-white p-2 rounded-sm border border-[var(--color-casamento-texto)] border-opacity-10 text-[10px] shadow-sm">
@@ -372,8 +497,21 @@
       </div>
     </div>
 
+    <!-- Paginação Mobile Embutida -->
     <div class="md:hidden fixed bottom-0 left-0 w-full z-30 transition-transform duration-300" :class="menuAberto || modalPresenteAberto || modalCategoriasAberto ? 'translate-y-full' : 'translate-y-0'">
-      <div class="bg-white/85 backdrop-blur-xl border-t border-[var(--color-casamento-dourado)] border-opacity-20 shadow-[0_-10px_40px_rgba(197,160,128,0.1)] px-6 pt-5 pb-safe flex justify-between items-center">
+      
+      <div v-if="abaAtual === 'mensagens' && totalPaginasMensagens > 1" class="bg-white/95 border-t border-[var(--color-casamento-dourado)] border-opacity-20 px-4 py-2 flex justify-between items-center text-[9px] tracking-widest uppercase text-[var(--color-casamento-dourado)]">
+        <button @click="paginaMensagens--" :disabled="paginaMensagens === 1" class="px-2 py-1 cursor-pointer disabled:opacity-30">Anterior</button>
+        <span class="opacity-60 text-[var(--color-casamento-texto)]">{{ paginaMensagens }} / {{ totalPaginasMensagens }}</span>
+        <button @click="paginaMensagens++" :disabled="paginaMensagens === totalPaginasMensagens" class="px-2 py-1 cursor-pointer disabled:opacity-30">Próxima</button>
+      </div>
+      <div v-if="abaAtual === 'presentes' && totalPaginasPresentes > 1" class="bg-white/95 border-t border-[var(--color-casamento-dourado)] border-opacity-20 px-4 py-2 flex justify-between items-center text-[9px] tracking-widest uppercase text-[var(--color-casamento-dourado)]">
+        <button @click="paginaPresentes--" :disabled="paginaPresentes === 1" class="px-2 py-1 cursor-pointer disabled:opacity-30">Anterior</button>
+        <span class="opacity-60 text-[var(--color-casamento-texto)]">{{ paginaPresentes }} / {{ totalPaginasPresentes }}</span>
+        <button @click="paginaPresentes++" :disabled="paginaPresentes === totalPaginasPresentes" class="px-2 py-1 cursor-pointer disabled:opacity-30">Próxima</button>
+      </div>
+
+      <div class="bg-white/95 backdrop-blur-xl border-t border-[var(--color-casamento-dourado)] border-opacity-10 shadow-[0_-10px_40px_rgba(197,160,128,0.05)] px-6 pt-3 pb-safe flex justify-between items-center">
         <div class="flex flex-col">
           <span class="text-[8px] tracking-[0.3em] uppercase opacity-50 text-[var(--color-casamento-texto)] mb-1">Total Arrecadado</span>
           <span class="text-2xl text-[var(--color-casamento-dourado)] font-light tracking-wide leading-none pb-1">{{ formatarMoeda(totalArrecadado) }}</span>
@@ -404,6 +542,14 @@ const menuAberto = ref(false);
 
 const filtroMensagens = ref('recentes');
 const filtroPresentes = ref('todos');
+
+// Paginação
+const paginaMensagens = ref(1);
+const paginaPresentes = ref(1);
+const itensPorPagina = 10;
+
+watch([filtroMensagens, abaAtual], () => { paginaMensagens.value = 1; });
+watch([filtroPresentes, abaAtual], () => { paginaPresentes.value = 1; });
 
 watch(menuAberto, (novoValor) => {
   if (novoValor) {
@@ -446,8 +592,17 @@ const buscarDados = async () => {
   }
 };
 
+const presentesPendentes = computed(() => {
+  return presentesPainel.value.filter(p => p.status === 'reservado');
+});
+
 const totalArrecadado = computed(() => {
-  return mensagens.value.reduce((total, msg) => total + (Number(msg.valor) || 0), 0);
+  return presentesPainel.value.reduce((total, p) => {
+    if (p.status === 'comprado') {
+      return total + (Number(p.valor) || 0);
+    }
+    return total;
+  }, 0);
 });
 
 const mensagensFiltradas = computed(() => {
@@ -463,6 +618,14 @@ const mensagensFiltradas = computed(() => {
   return resultado;
 });
 
+const isExpirado = (dataReservaIso) => {
+  if (!dataReservaIso) return false;
+  const reserva = new Date(dataReservaIso).getTime();
+  const agora = new Date().getTime();
+  const expiraEm = reserva + (24 * 60 * 60 * 1000);
+  return agora > expiraEm;
+};
+
 const presentesFiltrados = computed(() => {
   let resultado = [...presentesPainel.value];
   
@@ -476,10 +639,48 @@ const presentesFiltrados = computed(() => {
     resultado.sort((a, b) => Number(b.valor) - Number(a.valor));
   } else if (filtroPresentes.value === 'menor_valor') {
     resultado.sort((a, b) => Number(a.valor) - Number(b.valor));
+  } else if (filtroPresentes.value === 'reservados') {
+    resultado = resultado.filter(p => p.status === 'reservado');
   }
+
+  // Ordenação Master hierárquica
+  resultado.sort((a, b) => {
+    const pesoA = a.status === 'reservado' ? 0 : (a.status === 'comprado' ? 1 : (a.destaque ? 2 : 3));
+    const pesoB = b.status === 'reservado' ? 0 : (b.status === 'comprado' ? 1 : (b.destaque ? 2 : 3));
+    if (pesoA !== pesoB) return pesoA - pesoB;
+    return 0; 
+  });
   
   return resultado;
 });
+
+const totalPaginasMensagens = computed(() => Math.ceil(mensagensFiltradas.value.length / itensPorPagina) || 1);
+const totalPaginasPresentes = computed(() => Math.ceil(presentesFiltrados.value.length / itensPorPagina) || 1);
+
+const mensagensPaginadas = computed(() => {
+  const inicio = (paginaMensagens.value - 1) * itensPorPagina;
+  return mensagensFiltradas.value.slice(inicio, inicio + itensPorPagina);
+});
+
+const presentesPaginados = computed(() => {
+  const inicio = (paginaPresentes.value - 1) * itensPorPagina;
+  return presentesFiltrados.value.slice(inicio, inicio + itensPorPagina);
+});
+
+const calcularTempoRestante = (dataReservaIso) => {
+  if (!dataReservaIso) return '';
+  const reserva = new Date(dataReservaIso).getTime();
+  const agora = new Date().getTime();
+  const expiraEm = reserva + (24 * 60 * 60 * 1000);
+  const diff = expiraEm - agora;
+
+  if (diff <= 0) return 'Expirado';
+
+  const horas = Math.floor(diff / (1000 * 60 * 60));
+  const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+  return `Expira em ${horas}h e ${minutos}m`;
+};
 
 const formatarMoeda = (valor) => {
   if (!valor) return 'R$ 0,00';
@@ -491,6 +692,50 @@ const formatarData = (dataIso) => {
   return new Intl.DateTimeFormat('pt-BR', { 
     day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
   }).format(new Date(dataIso)).replace(',', ' às');
+};
+
+const formatarDataCurta = (dataIso) => {
+  if (!dataIso) return '';
+  return new Intl.DateTimeFormat('pt-BR', { 
+    day: '2-digit', month: '2-digit', year: 'numeric'
+  }).format(new Date(dataIso));
+};
+
+const getStatusMensagem = (presenteId, msgNome) => {
+  const presente = presentesPainel.value.find(p => p.id === presenteId);
+  if (!presente) return 'cancelado'; 
+  
+  const nomeMsg = (msgNome || '').toLowerCase().trim();
+  const nomeRes = (presente.reservado_por || '').toLowerCase().trim();
+  
+  // CIRÚRGICO: Checa se a mensagem é do dono da reserva atual
+  if (presente.status === 'comprado') {
+    return nomeMsg === nomeRes ? 'comprado' : 'expirado';
+  }
+  if (presente.status === 'reservado') {
+    if (nomeMsg === nomeRes) {
+      return isExpirado(presente.data_reserva) ? 'expirado' : 'reservado';
+    }
+    return 'expirado'; 
+  }
+  return 'cancelado'; 
+};
+
+const excluirMensagem = async (id) => {
+  if(confirm("Tem certeza que deseja excluir este recado DEFINITIVAMENTE?")) {
+    try {
+      await deleteDoc(doc(db, "mensagens", id));
+      mensagens.value = mensagens.value.filter(m => m.id !== id);
+      
+      const sobra = Math.ceil(mensagensFiltradas.value.length / itensPorPagina);
+      if (paginaMensagens.value > sobra && sobra > 0) {
+        paginaMensagens.value = sobra;
+      }
+    } catch (error) {
+      console.error("Erro ao excluir recado:", error);
+      alert("Erro ao excluir o recado.");
+    }
+  }
 };
 
 const padronizarTexto = (texto) => {
@@ -525,6 +770,51 @@ const sair = () => {
   document.body.style.overflow = '';
   sessionStorage.removeItem('noivos_auth');
   router.push('/login');
+};
+
+const confirmarReserva = async (item) => {
+  if (confirm(`Confirmar o recebimento do PIX de ${item.reservado_por} para o presente "${item.titulo}"?\nIsso atualizará o seu valor arrecadado.`)) {
+    try {
+      const refDoc = doc(db, "presentes", item.id);
+      await updateDoc(refDoc, { status: 'comprado' });
+      item.status = 'comprado';
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao confirmar o pagamento.");
+    }
+  }
+};
+
+const cancelarReserva = async (item) => {
+  if (confirm(`Cancelar a reserva de "${item.titulo}" feita por ${item.reservado_por}?\nO presente voltará a ficar disponível para outros convidados.`)) {
+    try {
+      const refDoc = doc(db, "presentes", item.id);
+      await updateDoc(refDoc, { 
+        status: 'disponivel', 
+        reservado_por: '', 
+        data_reserva: null 
+      });
+      item.status = 'disponivel';
+      item.reservado_por = '';
+      item.data_reserva = null;
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao cancelar a reserva.");
+    }
+  }
+};
+
+const renovarReserva = async (item) => {
+  try {
+    const refDoc = doc(db, "presentes", item.id);
+    const novaData = new Date().toISOString();
+    await updateDoc(refDoc, { data_reserva: novaData });
+    item.data_reserva = novaData;
+    alert("A reserva foi renovada por mais 24 horas!");
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao renovar a reserva.");
+  }
 };
 
 const alternarDestaque = async (presente) => {
@@ -562,6 +852,11 @@ const excluirPresente = async (id) => {
     try {
       await deleteDoc(doc(db, "presentes", id));
       presentesPainel.value = presentesPainel.value.filter(p => p.id !== id);
+      
+      const sobra = Math.ceil(presentesFiltrados.value.length / itensPorPagina);
+      if (paginaPresentes.value > sobra && sobra > 0) {
+        paginaPresentes.value = sobra;
+      }
     } catch (error) {
       console.error("Erro ao excluir:", error);
       alert("Erro ao excluir o presente.");
@@ -668,7 +963,6 @@ const modalPresenteAberto = ref(false);
 const salvandoPresente = ref(false);
 const presenteSendoEditado = ref(null); 
 
-// CIRÚRGICO: Fallback para o ícone no modal
 const novoPresente = ref({ titulo: '', valor: '', descricao: '', categoria: '', links: [], destaque: false, icone: '' });
 const categoriasCadastradas = ref([]); 
 const mostrandoNovaCategoria = ref(false);
@@ -765,7 +1059,6 @@ const salvarPresenteBD = async () => {
     const categoriaPadronizada = padronizarTexto(novoPresente.value.categoria);
     const valorNumerico = Number(novoPresente.value.valor);
     
-    // CIRÚRGICO: Sempre salva a imagem padrão original se nenhuma URL for colada.
     const iconeFinal = novoPresente.value.icone.trim() || '/gift_close.gif';
 
     if (presenteSendoEditado.value) {
@@ -789,6 +1082,7 @@ const salvarPresenteBD = async () => {
       alert("Presente atualizado com sucesso!");
 
     } else {
+      const novaData = new Date().toISOString();
       const docRef = await addDoc(collection(db, "presentes"), {
         titulo: tituloPadronizado,
         descricao: descricaoPadronizada,
@@ -797,8 +1091,11 @@ const salvarPresenteBD = async () => {
         links: novoPresente.value.links,
         icone: iconeFinal, 
         destaque: novoPresente.value.destaque,
-        ativo: true, 
-        data_criacao: new Date().toISOString()
+        ativo: true,
+        status: 'disponivel', 
+        reservado_por: '', 
+        data_reserva: null, 
+        data_criacao: novaData
       });
 
       presentesPainel.value.unshift({
@@ -810,7 +1107,11 @@ const salvarPresenteBD = async () => {
         links: novoPresente.value.links,
         icone: iconeFinal, 
         destaque: novoPresente.value.destaque,
-        ativo: true
+        ativo: true,
+        status: 'disponivel',
+        reservado_por: '',
+        data_reserva: null,
+        data_criacao: novaData
       });
       alert("Presente cadastrado com sucesso!");
     }
@@ -832,6 +1133,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05)); }
+  50% { transform: translateY(-3px); filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out;
 }

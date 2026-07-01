@@ -112,7 +112,8 @@
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-12 mt-12">
           
           <div v-for="(presente, index) in presentesDestaque" :key="presente.id" 
-               class="reveal bg-[var(--color-casamento-fundo)] px-8 py-16 min-h-[380px] rounded-sm border border-transparent hover:border-[var(--color-casamento-dourado)] hover:-translate-y-1 hover:shadow-lg transition-all duration-500 flex flex-col items-center group"
+               class="reveal bg-[var(--color-casamento-fundo)] px-8 py-16 min-h-[380px] rounded-sm border border-transparent transition-all duration-500 flex flex-col items-center group"
+               :class="isReservadoValido(presente) ? 'opacity-90' : 'hover:border-[var(--color-casamento-dourado)] hover:-translate-y-1 hover:shadow-lg'"
                :style="{ transitionDelay: `${index * 150}ms` }">
            
             <div class="w-24 h-24 rounded-full bg-[var(--color-casamento-fundo)] border border-[#5A8BBF] border-opacity-40 flex items-center justify-center mb-8 mx-auto overflow-hidden shadow-inner grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:border-opacity-100">
@@ -131,9 +132,19 @@
               <div class="w-8 h-[1px] bg-[var(--color-casamento-dourado)] opacity-50 mb-5 group-hover:w-16 transition-all duration-500"></div>
               
               <div class="w-full">
-                <button @click="abrirModal(presente.id)" class="w-full py-3 border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[10px] tracking-[0.2em] uppercase rounded-sm hover:bg-[var(--color-casamento-dourado)] hover:text-white transition-colors duration-300 cursor-pointer">
-                  Presentear
-                </button>
+                  <!-- NOVA LÓGICA DO BOTÃO E STATUS -->
+                  <div v-if="presente.status === 'comprado'" class="w-full py-3 bg-transparent border border-[var(--color-casamento-texto)] text-[var(--color-casamento-texto)] opacity-40 text-[9px] tracking-[0.2em] uppercase rounded-sm flex items-center justify-center gap-1.5 cursor-default">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" /></svg>
+                    Já Presenteado
+                  </div>
+                  
+                  <div v-else-if="isReservadoValido(presente)" class="w-full py-3 bg-[var(--color-casamento-dourado)] text-white text-[9px] tracking-[0.15em] uppercase rounded-sm flex items-center justify-center gap-2 px-3 shadow-[0_4px_10px_rgba(197,168,128,0.3)] transition-all cursor-default">
+                    <span class="truncate">Reservado por <span class="font-bold text-[10px]">{{ presente.reservado_por }}</span></span>
+                  </div>
+                  
+                  <button v-else @click="abrirModal(presente.id)" class="w-full py-3 border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[10px] tracking-[0.2em] uppercase rounded-sm hover:bg-[var(--color-casamento-dourado)] hover:text-white transition-colors duration-300 cursor-pointer">
+                    Presentear
+                  </button>
               </div>
             </div>
           </div>
@@ -256,6 +267,18 @@ const atualizarCronometro = () => {
 
 const presentesDestaque = ref([]);
 const carregandoDestaques = ref(true);
+
+// NOVA FUNÇÃO: Adicionada aqui para validar a regra das 24h igual na lista completa
+const isReservadoValido = (presente) => {
+  if (presente.status === 'comprado') return true;
+  if (presente.status === 'reservado' && presente.data_reserva) {
+    const dataReserva = new Date(presente.data_reserva);
+    const agora = new Date();
+    const diffHoras = (agora - dataReserva) / (1000 * 60 * 60);
+    return diffHoras < 24;
+  }
+  return false;
+};
 
 const buscarDestaques = async () => {
   try {

@@ -62,7 +62,11 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-              <div v-for="presente in presentesFiltrados" :key="presente.id" class="bg-white p-8 md:py-16 md:min-h-[350px] rounded-xl shadow-sm border border-[var(--color-casamento-texto)] border-opacity-5 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center group cursor-pointer h-full" @click="selecionarPresente(presente)">
+              <!-- Aplicada a validação visual do status no class do card -->
+              <div v-for="presente in presentesFiltrados" :key="presente.id" 
+                class="bg-white p-8 md:py-16 md:min-h-[350px] rounded-xl shadow-sm border border-[var(--color-casamento-texto)] border-opacity-5 transition-all duration-500 flex flex-col items-center text-center group h-full"
+                :class="isReservadoValido(presente) ? 'opacity-80' : 'cursor-pointer hover:shadow-xl hover:-translate-y-2'"
+                @click="!isReservadoValido(presente) && selecionarPresente(presente)">
                 
                 <div class="w-24 h-24 rounded-full flex items-center justify-center mb-6 mx-auto overflow-hidden border border-[#5A8BBF] border-opacity-40 bg-[var(--color-casamento-fundo)] transition-all duration-300 shadow-sm">
                   <img :src="presente.icone || '/gift_close.gif'" alt="Ícone do Presente" class="w-14 h-14 object-contain filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
@@ -80,9 +84,21 @@
                   <p class="text-xl text-[var(--color-casamento-dourado)] font-light mb-8">
                     {{ formatarMoeda(presente.valor) }}
                   </p>
-                  <button class="w-full py-3.5 bg-transparent border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[9px] tracking-[0.2em] uppercase rounded-sm group-hover:bg-[var(--color-casamento-dourado)] group-hover:text-white transition-colors duration-300">
+                  
+                 <!-- NOVA LÓGICA DO BOTÃO E STATUS -->
+                  <div v-if="presente.status === 'comprado'" class="w-full py-3.5 bg-transparent border border-[var(--color-casamento-texto)] text-[var(--color-casamento-texto)] opacity-40 text-[9px] tracking-[0.2em] uppercase rounded-sm flex items-center justify-center gap-1.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" /></svg>
+                    Já Presenteado
+                  </div>
+                  
+                  <div v-else-if="isReservadoValido(presente)" class="w-full py-3.5 bg-[var(--color-casamento-dourado)] text-white text-[9px] tracking-[0.15em] uppercase rounded-sm flex items-center justify-center gap-2 px-3 shadow-[0_4px_10px_rgba(197,168,128,0.3)] transition-all">
+                    <span class="truncate">Reservado por <span class="font-bold text-[10px]">{{ presente.reservado_por }}</span></span>
+                  </div>
+                  
+                  <button v-else class="w-full py-3.5 bg-transparent border border-[var(--color-casamento-dourado)] text-[var(--color-casamento-dourado)] text-[10px] tracking-[0.2em] uppercase rounded-sm group-hover:bg-[var(--color-casamento-dourado)] group-hover:text-white transition-colors duration-300">
                     Presentear
                   </button>
+                  
                 </div>
               </div>
             </div>
@@ -186,13 +202,13 @@
               <div v-else class="w-full flex flex-col items-center justify-center text-center animate-fade-in py-24">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-[#5A8BBF] mb-6 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <h3 class="font-script text-5xl text-[var(--color-casamento-texto)] mb-4">Com carinho,</h3>
-                <p class="text-sm font-light opacity-70 italic text-[var(--color-casamento-texto)] max-w-md">Sua mensagem foi guardada para os noivos.</p>
+                <p class="text-sm font-light opacity-70 italic text-[var(--color-casamento-texto)] max-w-md">O presente foi reservado com sucesso e sua mensagem guardada para os noivos.</p>
               </div>
 
               <div v-if="!mensagemEnviada" class="w-full flex justify-center pb-8 pt-6 mt-8 lg:mt-12">
                 <button @click="confirmarPresente" :disabled="enviandoMensagem" class="w-full max-w-md py-4 bg-[var(--color-casamento-dourado)] text-white text-[11px] tracking-[0.2em] uppercase rounded-sm hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50 flex justify-center items-center shadow-lg">
                   <span v-if="enviandoMensagem">Enviando...</span>
-                  <span v-else>Confirmar Presente</span>
+                  <span v-else>Reservar Presente</span>
                 </button>
               </div>
 
@@ -236,7 +252,8 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { db } from '../firebase.js';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+// ADICIONADO: doc e updateDoc para atualizar o status do presente no banco de dados
+import { collection, getDocs, addDoc, doc, updateDoc } from 'firebase/firestore';
 
 const router = useRouter();
 const carregando = ref(true);
@@ -254,6 +271,19 @@ const enviandoMensagem = ref(false);
 const mensagemEnviada = ref(false);
 
 const mostrarBotaoTopo = ref(false);
+
+// NOVA FUNÇÃO: Verifica se o presente está reservado E se a reserva foi feita há menos de 24 horas
+const isReservadoValido = (presente) => {
+  if (presente.status === 'comprado') return true; // Comprado nunca expira
+  if (presente.status === 'reservado' && presente.data_reserva) {
+    const dataReserva = new Date(presente.data_reserva);
+    const agora = new Date();
+    // Calcula a diferença de horas entre o clique e o agora
+    const diffHoras = (agora - dataReserva) / (1000 * 60 * 60);
+    return diffHoras < 24;
+  }
+  return false;
+};
 
 onMounted(async () => {
   window.scrollTo({ top: 0, behavior: 'instant' });
@@ -273,7 +303,7 @@ onMounted(async () => {
     const idSalvo = sessionStorage.getItem('presentePreSelecionado');
     if (idSalvo) {
       const presentePreviamenteClicado = presentes.value.find(p => p.id === idSalvo);
-      if (presentePreviamenteClicado) {
+      if (presentePreviamenteClicado && !isReservadoValido(presentePreviamenteClicado)) {
         selecionarPresente(presentePreviamenteClicado);
       }
       sessionStorage.removeItem('presentePreSelecionado');
@@ -363,6 +393,7 @@ const confirmarPresente = async () => {
   try {
     const nomeFinal = envioAnonimo.value ? "Anônimo" : nomeConvidado.value.trim();
     
+    // 1. Cria a mensagem no banco de dados (Mantém sua lógica intacta)
     await addDoc(collection(db, "mensagens"), {
       nome: nomeFinal,
       mensagem: mensagemConvidado.value.trim() || "Sem mensagem",
@@ -372,11 +403,26 @@ const confirmarPresente = async () => {
       data: new Date().toISOString()
     });
 
+    // 2. ATUALIZADO: Injeta as 3 novas variáveis no documento do presente no Firebase
+    const presenteRef = doc(db, "presentes", presenteSelecionado.value.id);
+    const dataAtual = new Date().toISOString();
+    
+    await updateDoc(presenteRef, {
+      status: "reservado",
+      reservado_por: nomeFinal,
+      data_reserva: dataAtual
+    });
+
+    // 3. ATUALIZADO: Atualiza o card localmente para a interface mudar de imediato
+    presenteSelecionado.value.status = "reservado";
+    presenteSelecionado.value.reservado_por = nomeFinal;
+    presenteSelecionado.value.data_reserva = dataAtual;
+
     mensagemEnviada.value = true;
     
   } catch (error) {
     console.error("Erro ao enviar mensagem:", error);
-    alert("Houve um erro ao enviar seu recado.");
+    alert("Houve um erro ao reservar o seu presente.");
   } finally {
     enviandoMensagem.value = false;
   }
